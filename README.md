@@ -16,7 +16,8 @@ Server Specifications
 Note:
 The installation scripts should be in separate files, following this preferred order: SSH - Java- Kafka - Python
 
-- Python Libraries Installed
+Python Libraries Installed
+
 - kafka-python
 - Faker
 - Boto3

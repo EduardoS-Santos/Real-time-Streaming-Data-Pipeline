@@ -1,0 +1,20 @@
+
+instalando
+sudo apt update
+sudo apt install openssh-server -y
+
+iniciando
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
+verificando
+sudo systemctl status ssh
+
+pegando o id 
+
+ip addr show
+
+10.0.0.1
+1.1.1.1
+10.0.0.10
+

@@ -1,0 +1,30 @@
+#iniciando servicos
+
+sudo /usr/local/kafka_2.13-3.4.0/bin/zookeeper-server-start.sh -daemon ./kafka_2.13-3.4.0/config/zookeeper.properties
+sudo /usr/local/kafka_2.13-3.4.0/bin/kafka-server-start.sh -daemon ./kafka_2.13-3.4.0/config/server.properties
+
+#Criacao do topico com 3 particoes
+
+ /usr/local/kafka_2.13-3.4.0/bin/kafka-topics.sh   --create   --topic assinaturas   --bootstrap-server 127.0.0.1:9092   --partitions 3   --replication-factor 1 
+
+#excluir topico
+
+#crie um arquivo chamado mod.sh copie o conteudo abaixo e execute com sudo bash nomearquivo
+CONFIG_FILE="/usr/local/kafka_2.13-3.4.0/config/server.properties"
+SETTING="delete.topic.enable=true"
+
+# Verificar se a configuração já existe no arquivo
+if grep -q "^delete.topic.enable=" "$CONFIG_FILE"; then
+    # Atualiza o valor se já existir
+    sed -i "s/^delete.topic.enable=.*/$SETTING/" "$CONFIG_FILE"
+else
+    # Adiciona a configuração ao final do arquivo
+    echo "$SETTING" >> "$CONFIG_FILE"
+fi
+
+echo "Configuração aplicada no arquivo $CONFIG_FILE."
+ 
+sudo /usr/local/kafka_2.13-3.4.0/bin/kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --delete --topic assinaturas
+sudo /usr/local/kafka_2.13-3.4.0/bin/kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --list
+
+

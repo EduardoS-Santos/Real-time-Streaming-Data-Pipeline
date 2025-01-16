@@ -1,0 +1,25 @@
+
+# instalando Java 8
+sudo apt update
+sudo apt-get install openjdk-8-jdk-headless -qq > /dev/null
+sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
+sudo update-alternatives --set jps /usr/lib/jvm/java-8-openjdk-amd64/bin/jps
+sudo java -version
+sudo readlink -f /usr/bin/java | sed "s:bin/java::"
+
+#Baixando Kafka
+
+sudo curl -sSOL https://archive.apache.org/dist/kafka/3.4.0/kafka_2.13-3.4.0.tgz
+sudo tar -xzf kafka_2.13-3.4.0.tgz
+sudo rm kafka_2.13-3.4.0.tgz
+
+sudo cp -r kafka_2.13-3.4.0 /usr/local/
+
+#inicia os servicos
+sudo /usr/local/kafka_2.13-3.4.0/bin/zookeeper-server-start.sh -daemon ./kafka_2.13-3.4.0/config/zookeeper.properties
+sudo /usr/local/kafka_2.13-3.4.0/bin/kafka-server-start.sh -daemon ./kafka_2.13-3.4.0/config/server.properties
+
+#mostra o processo kafka 
+ps -ef | grep kafka
+

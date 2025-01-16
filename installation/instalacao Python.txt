@@ -1,0 +1,18 @@
+# Instalacao Python 
+
+sudo apt update
+sudo apt install -y python3-pip
+sudo apt install -y librdkafka-dev python3-dev
+
+
+# Biblotecas que interagem com o kafka
+
+sudo pip install kafka-python
+
+# Criar dados falsos
+sudo pip install faker
+
+
+# Biblioteca que interage com o S3
+sudo pip install boto3
+
